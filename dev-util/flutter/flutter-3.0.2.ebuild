@@ -77,7 +77,7 @@ src_install() {
         PATENT_GRANT README.md TESTOWNERS
 
     # environment
-    doenvd ${FILESDIR}/99${PN}
+    #doenvd ${FILESDIR}/99${PN}
 }
 
 pkg_postinst() {
