@@ -38,5 +38,5 @@ src_install() {
     dodoc source.properties NOTICE.txt
 
     # environment
-    doenvd ${FILESDIR}/99${PN}
+    #doenvd ${FILESDIR}/99${PN}
 }
