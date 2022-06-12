@@ -5,7 +5,7 @@ EAPI=8
 
 inherit desktop wrapper
 
-RESTRICT="bindist mirror strip"
+RESTRICT="strip"
 
 QA_PREBUILT="
 	opt/${PN}/bin/*
@@ -17,7 +17,6 @@ QA_PREBUILT="
 	opt/${PN}/plugins/android/resources/installer/*/*
 	opt/${PN}/plugins/android/resources/native/*
 	opt/${PN}/plugins/android/resources/perfetto/*/*
-	opt/${PN}/plugins/android/resources/screen-sharing-agent/*/*
 	opt/${PN}/plugins/android/resources/simpleperf/*/*
 	opt/${PN}/plugins/android/resources/trace_processor_daemon/*
 	opt/${PN}/plugins/android/resources/transport/*/*
@@ -32,13 +31,14 @@ QA_PREBUILT="
 "
 
 DESCRIPTION="Android development environment based on IntelliJ IDEA"
-HOMEPAGE="https://developer.android.com/studio/preview/index.html"
-PROG="android-studio"
-SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${PROG}-${PV}-linux.tar.gz"
+HOMEPAGE="https://developer.android.com/studio"
+SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${P}-linux.tar.gz"
+#SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${PN}-${PV}-linux.tar.gz"
 
 LICENSE="Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5
 	EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT
 	MPL-1.1 MPL-2.0 NPL-1.1 OFL ZLIB"
+
 SLOT="0"
 IUSE="selinux"
 KEYWORDS="~amd64 ~x86"
@@ -69,7 +69,7 @@ RDEPEND="${DEPEND}
 	virtual/libcrypt:=
 "
 
-S=${WORKDIR}/${PROG}
+S=${WORKDIR}/${PN}
 
 src_compile() {
 	:;
@@ -80,7 +80,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 
-	fperms 755 "${dir}"/bin/{fsnotifier,format.sh,game-tools.sh,inspect.sh,ltedit.sh,profiler.sh,remote-dev-server.sh,studio.sh,printenv.py,restart.py}
+	fperms 755 "${dir}"/bin/{fsnotifier,format.sh,game-tools.sh,inspect.sh,ltedit.sh,profiler.sh,studio.sh,printenv.py,restart.py}
 	fperms -R 755 "${dir}"/bin/{helpers,lldb}
 	fperms -R 755 "${dir}"/jre/bin
 	fperms 755 "${dir}"/jre/lib/{jexec,jspawnhelper}
@@ -97,14 +97,11 @@ src_install() {
 
 	newicon "bin/studio.png" "${PN}.png"
 	make_wrapper ${PN} ${dir}/bin/studio.sh
-	make_desktop_entry ${PN} "Android Studio Canary" ${PN} "Development;IDE" "StartupWMClass=jetbrains-studio"
+	make_desktop_entry ${PN} "Android Studio" ${PN} "Development;IDE" "StartupWMClass=jetbrains-studio"
 }
 
-#pkg_postinst() {
-#}
-
 pkg_postrm() {
-	elog "Android Studio data files were not removed."
+	elog "Android studio data files were not removed."
 	elog "If there will be no other programs using them anymore"
 	elog "(especially another flavor of Android Studio)"
 	elog " remove manually following folders:"
