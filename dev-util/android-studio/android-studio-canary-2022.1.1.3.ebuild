@@ -32,8 +32,9 @@ QA_PREBUILT="
 
 DESCRIPTION="Android development environment based on IntelliJ IDEA"
 HOMEPAGE="https://developer.android.com/studio"
+PROG="android-studio"
 SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${P}-linux.tar.gz"
-#SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${PN}-${PV}-linux.tar.gz"
+#SRC_URI="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${PV}/${PROG}-${PV}-linux.tar.gz"
 
 LICENSE="Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5
 	EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT
