@@ -44,9 +44,9 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-8.7.1-gcc11.patch
-)
+#PATCHES=(
+#	"${FILESDIR}"/${PN}-8.7.1-gcc11.patch
+#)
 
 src_configure() {
 	local myqmakeargs=(
