@@ -69,7 +69,8 @@ src_configure() {
 		use ${x} || myqmakeargs+=( "NO${x^^}=1" )
 	done
 
-	eqmake5 ${myqmakeargs[@]}
+	#eqmake5 ${myqmakeargs[@]}
+	 cmake ${myqmakeargs[@]}
 }
 
 src_install() {
