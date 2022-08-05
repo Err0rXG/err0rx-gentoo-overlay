@@ -23,7 +23,7 @@ RESTRICT="bindist mirror"
 # bound helps Kepler sm_35 and sm_37 users.
 # https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions
 RDEPEND="
-	<sys-devel/gcc-12_pre[cxx]
+	<=sys-devel/gcc-12_pre[cxx]
 	>=x11-drivers/nvidia-drivers-450.80.02
 	nsight? (
 		dev-libs/libpfm
@@ -46,7 +46,7 @@ pkg_setup() {
 
 src_prepare() {
 	# ATTENTION: change requires revbump
-	local cuda_supported_gcc="8.5 9.4 9.5 10.3 10.4 11.1 11.2 11.3"
+	local cuda_supported_gcc="8.5 9.4 9.5 10.3 10.4 11.1 11.2 11.3 12.1"
 
 	sed \
 		-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
