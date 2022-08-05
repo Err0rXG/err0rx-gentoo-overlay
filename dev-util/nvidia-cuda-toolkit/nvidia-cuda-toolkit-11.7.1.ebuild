@@ -48,9 +48,9 @@ src_prepare() {
 	# ATTENTION: change requires revbump
 	local cuda_supported_gcc="8.5 9.4 9.5 10.3 10.4 11.1 11.2 11.3 12.1"
 
-	sed \
-		-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
-		"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
+	#sed \
+	#	-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
+	#	"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
 
 	default
 }
