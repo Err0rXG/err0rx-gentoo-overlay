@@ -1,5 +1,4 @@
 diff --git a/src/makefile b/src/makefile
-index 5a35a7a..985b16f 100644
 --- a/src/makefile
 +++ b/src/makefile
 @@ -1,8 +1,11 @@
