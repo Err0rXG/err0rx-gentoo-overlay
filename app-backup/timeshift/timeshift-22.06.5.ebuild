@@ -38,7 +38,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-PATCHES=( "${FILESDIR}"/${PN}-22.06.6-build-system.patch )
+PATCHES=( "${FILESDIR}"/${P}-makefile.patch )
 
 src_prepare() {
 	default
