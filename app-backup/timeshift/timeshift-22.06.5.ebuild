@@ -6,8 +6,8 @@ EAPI=8
 inherit optfeature toolchain-funcs vala xdg
 
 DESCRIPTION="A system restore utility for Linux"
-HOMEPAGE="https://github.com/teejee2008/timeshift"
-SRC_URI="https://github.com/teejee2008/${PN}/archive/${PV}.tar.gz -> ${PF}.tar.gz"
+HOMEPAGE="https://github.com/linuxmint/timeshift"
+SRC_URI="https://github.com/linuxmint/${PN}/archive/${PV}.tar.gz -> ${PF}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
