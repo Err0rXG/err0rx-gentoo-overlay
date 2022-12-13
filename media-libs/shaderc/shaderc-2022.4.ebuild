@@ -27,9 +27,9 @@ DEPEND="${RDEPEND}
 
 BDEPEND="doc? ( dev-ruby/asciidoctor )"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2020.4-fix-build.patch
-)
+#PATCHES=(
+#	"${FILESDIR}"/${PN}-2020.4-fix-build.patch
+#)
 
 # https://github.com/google/shaderc/issues/470
 RESTRICT=test
