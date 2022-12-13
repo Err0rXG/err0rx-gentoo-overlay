@@ -15,8 +15,8 @@ HOMEPAGE="https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/ https:/
 SRC_URI="https://github.com/KhronosGroup/glslang/archive/${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64 ~x86"
 
-#PATCHES=( "${FILESDIR}/${P}-Install-static-libs.patch" )
-PATCHES=( "${FILESDIR}/${P}-Fix-cmake-file-install-dir.patch" )
+PATCHES=( "${FILESDIR}/${P}-Install-static-libs.patch" )
+#PATCHES=( "${FILESDIR}/${P}-Fix-cmake-file-install-dir.patch" )
 
 LICENSE="BSD"
 SLOT="0/1"
