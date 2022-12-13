@@ -11,15 +11,6 @@ index b44cbc73..41f6de93 100644
      install(TARGETS OGLCompiler EXPORT glslang-targets)
  
      # Backward compatibility
-@@ -49,7 +49,7 @@ if(ENABLE_GLSLANG_INSTALL AND NOT BUILD_SHARED_LIBS)
-         message(WARNING \"Using `OGLCompilerTargets.cmake` is deprecated: use `find_package(glslang)` to find glslang CMake targets.\")
- 
-         if (NOT TARGET glslang::OGLCompiler)
--            include(\"\${CMAKE_CURRENT_LIST_DIR}/../../${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/glslang-targets.cmake\")
-+            include(\"\${CMAKE_CURRENT_LIST_DIR}/../../${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/glslang-targets.cmake\")
-         endif()
- 
-         add_library(OGLCompiler ALIAS glslang::OGLCompiler)
 diff --git a/glslang/CMakeLists.txt b/glslang/CMakeLists.txt
 index a8b14911..57ec1efd 100644
 --- a/glslang/CMakeLists.txt
