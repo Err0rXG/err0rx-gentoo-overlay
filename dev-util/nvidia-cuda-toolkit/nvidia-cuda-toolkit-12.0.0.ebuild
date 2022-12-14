@@ -23,14 +23,14 @@ RESTRICT="bindist mirror"
 # bound helps Kepler sm_35 and sm_37 users.
 # https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions
 RDEPEND="
-	<sys-devel/gcc-12_pre[cxx]
+	<sys-devel/gcc-13_pre[cxx]
 	>=x11-drivers/nvidia-drivers-450.80.02
 	nsight? (
 		dev-libs/libpfm
 		dev-libs/wayland
 		|| (
 			dev-libs/openssl-compat:1.1.1
-			=dev-libs/openssl-1.1.1*
+			>=dev-libs/openssl-1.1.1*
 		)
 		sys-libs/zlib
 	)
