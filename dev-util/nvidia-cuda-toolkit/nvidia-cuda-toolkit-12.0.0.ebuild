@@ -52,7 +52,7 @@ src_prepare() {
 	#	-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
 	#	"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
 	cat '#!/bin/bash' > ${T}/cuda-config
-	cat 'SUPPORT_GCC_VERSIONS_BY_CUDA="CUDA_SUPPORTED_GCC"
+	cat 'SUPPORT_GCC_VERSIONS_BY_CUDA="CUDA_SUPPORTED_GCC"'
 _print_help() {
         cat <<- EOF
         Usage:
