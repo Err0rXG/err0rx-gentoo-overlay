@@ -53,8 +53,8 @@ src_prepare() {
 	#	-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
 	#	"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
 	
-	tee -a "${T}"/cuda-config <<EOF \                                                                                                                                                                                                                      ─╯
-             #!/bin/bash\
+	tee -a "${T}"/cuda-config <<EOF                                                                                                                                                                                                                       ─╯
+             #!/bin/bash
 	     
 	     SUPPORT_GCC_VERSIONS_BY_CUDA="8.5 9.4 9.5 10 10.3 10.4 11 11.1 11.2 11.3 12 12,1 12,2"
 
