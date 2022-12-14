@@ -5,7 +5,7 @@ EAPI=8
 
 inherit check-reqs toolchain-funcs unpacker
 
-DRIVER_PV="525.60.13"
+DRIVER_PV="520.61.05"
 
 DESCRIPTION="NVIDIA CUDA Toolkit (compiler and friends)"
 HOMEPAGE="https://developer.nvidia.com/cuda-zone"
@@ -23,10 +23,11 @@ RESTRICT="bindist mirror"
 # bound helps Kepler sm_35 and sm_37 users.
 # https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions
 RDEPEND="
-	<sys-devel/gcc-13_pre[cxx]
+	<sys-devel/gcc-12_pre[cxx]
 	>=x11-drivers/nvidia-drivers-450.80.02
 	nsight? (
 		dev-libs/libpfm
+		dev-libs/wayland
 		|| (
 			dev-libs/openssl-compat:1.1.1
 			=dev-libs/openssl-1.1.1*
@@ -46,35 +47,11 @@ pkg_setup() {
 
 src_prepare() {
 	# ATTENTION: change requires revbump
-	local cuda_supported_gcc="8.5 9.4 9.5 10.3 10.4 11.1 11.2 11.3 12.1 12.2"
+	local cuda_supported_gcc="8.5 9.4 9.5 10 10.3 10.4 11 11.1 11.2 11.3 12 12,1 12,2"
 
-	#sed \
-	#	-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
-	#	"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
-	cat '#!/bin/bash' > ${T}/cuda-config
-	cat 'SUPPORT_GCC_VERSIONS_BY_CUDA'="CUDA_SUPPORTED_GCC"
-_print_help() {
-        cat <<- EOF
-        Usage:
-                $(basename $0) [options]
-                -s | --supported   Returns by current CUDA supported gcc versions
-                -h | --help        Shows this help
-        EOF
-}
-case ${1} in
-        -s|--supported)
-                echo "${SUPPORT_GCC_VERSIONS_BY_CUDA}"
-                exit 0
-                ;;
-        -h|--help)
-                _print_help
-                exit 255
-                ;;
-        *)
-                _print_help
-                exit 1
-                ;;
-esac' >> ${T}/cuda-config
+	sed \
+		-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
+		"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
 
 	default
 }
@@ -90,7 +67,7 @@ src_install() {
 	local builddirs=(
 		builds/cuda_{cccl,cudart,cuobjdump,cuxxfilt,memcheck,nvcc,nvdisasm,nvml_dev,nvprune,nvrtc,nvtx}
 		builds/lib{cublas,cufft,curand,cusolver,cusparse,npp,nvjpeg}
-		$(usex profiler "builds/cuda_nvprof builds/cuda_cupti" "")
+		$(usex profiler "builds/cuda_nvprof builds/cuda_cupti builds/cuda_profiler_api" "")
 		$(usex vis-profiler "builds/cuda_nvvp" "")
 		$(usex debugger "builds/cuda_gdb" "")
 	)
@@ -255,7 +232,7 @@ src_install() {
 }
 
 pkg_postinst_check() {
-	local a="$(${EROOT}/opt/cuda/bin/cuda-config -s)"
+	local a="$("${EROOT}"/opt/cuda/bin/cuda-config -s)"
 	local b="0.0"
 	local v
 	for v in ${a}; do
