@@ -30,7 +30,7 @@ RDEPEND="
 		dev-libs/wayland
 		|| (
 			dev-libs/openssl-compat:1.1.1
-			>=dev-libs/openssl-1.1.1*
+			=dev-libs/openssl-1.1.1*
 		)
 		sys-libs/zlib
 	)
