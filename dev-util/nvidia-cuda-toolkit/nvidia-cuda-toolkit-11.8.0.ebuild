@@ -143,8 +143,8 @@ src_install() {
 		local exes=(
 			${ncu_dir}/ncu
 			${ncu_dir}/ncu-ui
-			${ncu_dir}/nv-nsight-cu
-			${ncu_dir}/nv-nsight-cu-cli
+			#${ncu_dir}/nv-nsight-cu
+			#${ncu_dir}/nv-nsight-cu-cli
 			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libexec/QtWebEngineProcess
 			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/CrashReporter
 			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/OpenGLVersionChecker
