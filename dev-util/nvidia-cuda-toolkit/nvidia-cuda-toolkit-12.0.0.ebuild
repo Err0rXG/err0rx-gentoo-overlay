@@ -145,14 +145,14 @@ src_install() {
 			${ncu_dir}/ncu-ui
 			#${ncu_dir}/nv-nsight-cu
 			#${ncu_dir}/nv-nsight-cu-cli
-			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/libexec/QtWebEngineProcess
-			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/CrashReporter
-			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/OpenGLVersionChecker
-			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/ncu-ui
-			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/ncu-ui.bin
-			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/TreeLauncherTargetLdPreloadHelper
-			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/TreeLauncherSubreaper
-			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/ncu
+			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libexec/QtWebEngineProcess
+			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/CrashReporter
+			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/OpenGLVersionChecker
+			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/ncu-ui
+			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/ncu-ui.bin
+			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/TreeLauncherTargetLdPreloadHelper
+			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/TreeLauncherSubreaper
+			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/ncu
 		)
 
 		dobin builds/integration/nsight-compute/{ncu,ncu-ui}
@@ -196,7 +196,7 @@ src_install() {
 		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libstdc++.so.6 || die
 
 		# unbundle openssl
-		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_36-x64/libssl.so* || die
+		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libssl.so* || die
 		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libssl.so* || die
 
 		# unbundle libz
@@ -210,7 +210,7 @@ src_install() {
 		# TODO: unbundle icu
 		
 		# unbundle mesa
-		rm -r "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_36-x64/Mesa || die
+		rm -r "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/Mesa || die
 		rm -r "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/Mesa || die
 		
 		# TODO: unbundle libSshClient
