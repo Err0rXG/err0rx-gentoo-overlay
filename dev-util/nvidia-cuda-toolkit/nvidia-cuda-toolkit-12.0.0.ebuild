@@ -145,14 +145,14 @@ src_install() {
 			${ncu_dir}/ncu-ui
 			#${ncu_dir}/nv-nsight-cu
 			#${ncu_dir}/nv-nsight-cu-cli
-			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libexec/QtWebEngineProcess
-			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/CrashReporter
-			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/OpenGLVersionChecker
-			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/ncu-ui
-			${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/ncu-ui.bin
-			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/TreeLauncherTargetLdPreloadHelper
-			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/TreeLauncherSubreaper
-			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/ncu
+			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/libexec/QtWebEngineProcess
+			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/CrashReporter
+			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/OpenGLVersionChecker
+			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/ncu-ui
+			${ncu_dir}/host/linux-desktop-glibc_2_36-x64/ncu-ui.bin
+			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/TreeLauncherTargetLdPreloadHelper
+			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/TreeLauncherSubreaper
+			${ncu_dir}/target/linux-desktop-glibc_2_36-x64/ncu
 		)
 
 		dobin builds/integration/nsight-compute/{ncu,ncu-ui}
