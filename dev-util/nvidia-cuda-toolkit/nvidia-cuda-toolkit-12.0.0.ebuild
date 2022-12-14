@@ -196,7 +196,7 @@ src_install() {
 		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libstdc++.so.6 || die
 
 		# unbundle openssl
-		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libssl.so* || die
+		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_36-x64/libssl.so* || die
 		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libssl.so* || die
 
 		# unbundle libz
@@ -208,7 +208,11 @@ src_install() {
 		# TODO: unbundle qt5
 		# TODO: unbundle boost
 		# TODO: unbundle icu
-		# TODO: unbundle mesa
+		
+		# unbundle mesa
+		rm -r "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_36-x64/Mesa || die
+		rm -r "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/Mesa || die
+		
 		# TODO: unbundle libSshClient
 		# TODO: unbundle sqlite
 	fi
