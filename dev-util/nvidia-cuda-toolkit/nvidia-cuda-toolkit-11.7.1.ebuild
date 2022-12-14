@@ -48,36 +48,9 @@ src_prepare() {
 	# ATTENTION: change requires revbump
 	local cuda_supported_gcc="8.5 9.4 9.5 10.3 10.4 11.1 11.2 11.3 12.1"
 
-	#sed \
-	#	-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
-	#	"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
-	cat '#!/bin/bash' > ${T}/cuda-config
-	cat 'SUPPORT_GCC_VERSIONS_BY_CUDA="CUDA_SUPPORTED_GCC"
-
-_print_help() {
-        cat <<- EOF
-        Usage:
-                $(basename $0) [options]
-
-                -s | --supported   Returns by current CUDA supported gcc versions
-                -h | --help        Shows this help
-        EOF
-}
-
-case ${1} in
-        -s|--supported)
-                echo "${SUPPORT_GCC_VERSIONS_BY_CUDA}"
-                exit 0
-                ;;
-        -h|--help)
-                _print_help
-                exit 255
-                ;;
-        *)
-                _print_help
-                exit 1
-                ;;
-esac' >> ${T}/cuda-config
+	sed \
+		-e "s:CUDA_SUPPORTED_GCC:${cuda_supported_gcc}:g" \
+		"${FILESDIR}"/cuda-config.in > "${T}"/cuda-config || die
 
 	default
 }
