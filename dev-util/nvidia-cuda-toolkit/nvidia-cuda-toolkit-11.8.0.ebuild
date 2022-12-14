@@ -155,7 +155,7 @@ src_install() {
 			${ncu_dir}/target/linux-desktop-glibc_2_11_3-x64/ncu
 		)
 
-		dobin builds/integration/nsight-compute/{ncu,ncu-ui,nv-nsight-cu,nv-nsight-cu-cli}
+		dobin builds/integration/nsight-compute/{ncu,ncu-ui}
 		eend $?
 
 		local nsys_dir=$(grep -o 'nsight-systems-[0-9][0-9\.]*' -m1 manifests/cuda_x86_64.xml)
