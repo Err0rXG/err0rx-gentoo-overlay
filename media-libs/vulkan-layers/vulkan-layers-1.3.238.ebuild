@@ -18,7 +18,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="wayland X"
 
-PATCHES=("${FILESDIR}/${P}-Make-BUILD_WERROR-actually-work.patch")
+#PATCHES=("${FILESDIR}/${P}-Make-BUILD_WERROR-actually-work.patch")
 
 BDEPEND=">=dev-util/cmake-3.10.2"
 RDEPEND="~dev-util/spirv-tools-2022.4:=[${MULTILIB_USEDEP}]"
