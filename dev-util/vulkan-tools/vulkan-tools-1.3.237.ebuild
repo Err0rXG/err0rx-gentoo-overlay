@@ -34,7 +34,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
-	~dev-util/vulkan-headers-${PV}
+	>=dev-util/vulkan-headers-${PV}
 "
 
 pkg_setup() {
