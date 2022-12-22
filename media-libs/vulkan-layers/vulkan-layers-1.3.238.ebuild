@@ -23,7 +23,7 @@ PATCHES=( "${FILESDIR}/${P}-cmake-Cleanup-find_package-SPIRV-code.patch"
 )
 
 BDEPEND=">=dev-util/cmake-3.10.2"
-RDEPEND="~dev-util/spirv-tools-${PV}:=[${MULTILIB_USEDEP}]"
+RDEPEND="~dev-util/spirv-tools-2022.4:=[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
 	>=dev-cpp/robin-hood-hashing-3.11.5
