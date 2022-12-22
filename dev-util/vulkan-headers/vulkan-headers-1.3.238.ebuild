@@ -1,11 +1,11 @@
-EAPI=7
+EAPI=8
 
 MY_PN=Vulkan-Headers
 inherit cmake
 
-SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/sdk-${PV}.0.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="amd64 arm arm64 ~loong ppc ppc64 ~riscv x86"
-S="${WORKDIR}"/${MY_PN}-sdk-${PV}.0
+S="${WORKDIR}"/${MY_PN}-v${PV}
 
 DESCRIPTION="Vulkan Header files and API registry"
 HOMEPAGE="https://github.com/KhronosGroup/Vulkan-Headers"
