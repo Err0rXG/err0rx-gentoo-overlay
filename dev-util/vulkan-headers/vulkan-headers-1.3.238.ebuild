@@ -7,7 +7,7 @@ inherit cmake
 
 SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="amd64 arm arm64 ~loong ppc ppc64 ~riscv x86"
-S="${WORKDIR}"/${MY_PN}-v${PV}
+S="${WORKDIR}"/${MY_PN}-${PV}
 
 DESCRIPTION="Vulkan Header files and API registry"
 HOMEPAGE="https://github.com/KhronosGroup/Vulkan-Headers"
