@@ -1,3 +1,4 @@
+
 From 836a09267fe034ce783570e6920e1b638c0bd212 Mon Sep 17 00:00:00 2001
 From: Juan Ramos <juan@lunarg.com>
 Date: Fri, 21 Oct 2022 17:43:23 -0600
@@ -85,3 +86,17 @@ index a7f01081415..23de46a1a22 100644
  # modified to point it to the same directory that contains the layers. TODO: This should not be a library -- in future, include
 diff --git a/cmake/VVLGenerateSourceCode.cmake b/cmake/VVLGenerateSourceCode.cmake
 index 43efdb8201c..13c81e38aca 100644
+--- a/cmake/VVLGenerateSourceCode.cmake
++++ b/cmake/VVLGenerateSourceCode.cmake
+@@ -20,7 +20,10 @@ if(PYTHONINTERP_FOUND)
+         message(FATAL_ERROR "Unable to find vk.xml")
+     endif()
+ 
+-    set(spirv_unified_include_dir "${SPIRV_HEADERS_INSTALL_DIR}/include/spirv/unified1/")
++    # Get the include directory of the SPIRV-Headers
++    get_target_property(SPIRV_HEADERS_INCLUDE_DIR SPIRV-Headers::SPIRV-Headers INTERFACE_INCLUDE_DIRECTORIES)
++
++    set(spirv_unified_include_dir "${SPIRV_HEADERS_INCLUDE_DIR}/spirv/unified1/")
+     if (NOT IS_DIRECTORY ${spirv_unified_include_dir})
+         message(FATAL_ERROR "Unable to find spirv/unified1")
+     endif()
