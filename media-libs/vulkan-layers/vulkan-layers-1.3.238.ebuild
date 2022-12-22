@@ -27,7 +27,7 @@ RDEPEND="~dev-util/spirv-tools-2022.4:=[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
 	>=dev-cpp/robin-hood-hashing-3.11.5
-	~dev-util/glslang-${PV}:=[${MULTILIB_USEDEP}]
+	~dev-util/glslang-11.13.0:=[${MULTILIB_USEDEP}]
 	~dev-util/vulkan-headers-${PV}
 	wayland? ( dev-libs/wayland:=[${MULTILIB_USEDEP}] )
 	X? (
