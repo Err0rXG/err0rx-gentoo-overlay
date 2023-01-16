@@ -38,7 +38,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-PATCHES=( "${FILESDIR}"/${PN}-22.11.1-build-system.patch )
+PATCHES=( "${FILESDIR}"/${PN}-22.11.2-build-system.patch )
 
 src_prepare() {
 	default
