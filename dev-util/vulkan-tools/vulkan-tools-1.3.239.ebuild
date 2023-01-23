@@ -23,7 +23,7 @@ REQUIRED_USE="cube? ( ^^ ( X wayland ) )"
 
 BDEPEND="${PYTHON_DEPS}
 	>=dev-util/cmake-3.10.2
-	cube? ( ~dev-util/glslang-${PV}:=[${MULTILIB_USEDEP}] )
+	cube? ( >=dev-util/glslang-12.0.0:=[${MULTILIB_USEDEP}] )
 "
 RDEPEND="
 	>=media-libs/vulkan-loader-${PV}:=[${MULTILIB_USEDEP},wayland?,X?]
