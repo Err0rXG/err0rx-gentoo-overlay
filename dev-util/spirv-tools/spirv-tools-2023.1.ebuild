@@ -30,12 +30,12 @@ BDEPEND="${PYTHON_DEPS}
         ${COMMON_DEPEND}"
 
 multilib_src_configure() {
-#        local mycmakeargs=(
-#                "-DSPIRV-Headers_SOURCE_DIR=${ESYSROOT}/usr/"
+        local mycmakeargs=(
+                "-DSPIRV-Headers_SOURCE_DIR=${ESYSROOT}/usr/"
 #                "-DSPIRV_WERROR=OFF"
 #                "-DSPIRV_TOOLS_BUILD_STATIC=OFF"
 #                "-DBUILD_SHARED_LIBS=ON"
-#        )
+        )
 
         cmake_src_configure
 }
