@@ -33,6 +33,7 @@ RDEPEND="
 			=dev-libs/openssl-1.1.1*
 		)
 		sys-libs/zlib
+		media-libs/tiff
 	)
 	vis-profiler? (
 		>=virtual/jre-1.8:*
@@ -207,13 +208,23 @@ src_install() {
 
 		# TODO: unbundle qt5
 		# TODO: unbundle boost
+		
 		# TODO: unbundle icu
+		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libicu* || die
+		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libicu* || die
+		
+		# unbundle libqtiff
+		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/Plugins/imageformats/libqtiff.so* || die
+		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/Plugins/imageformats/libqtiff.so* || die
 		
 		# unbundle mesa
 		rm -r "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/Mesa || die
 		rm -r "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/Mesa || die
 		
-		# TODO: unbundle libSshClient
+		# unbundle libSshClient
+		rm "${ED}"/${cudadir}/${ncu_dir}/host/linux-desktop-glibc_2_11_3-x64/libSshClient.so* || die
+		rm "${ED}"/${cudadir}/${nsys_dir}/host-linux-x64/libSshClient.so* || die
+		
 		# TODO: unbundle sqlite
 	fi
 
