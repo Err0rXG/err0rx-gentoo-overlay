@@ -10,8 +10,8 @@ PYTHON_REQ_USE="xml(+)"
 inherit cmake-multilib python-any-r1
 
 #if [[ ${PV} == *9999* ]]; then
-        EGIT_REPO_URI="https://github.com/KhronosGroup/${MY_PN}.git"
-        inherit git-r3
+EGIT_REPO_URI="https://github.com/KhronosGroup/${MY_PN}.git"
+inherit git-r3
 #else
 #        EGIT_COMMIT="v${PV}"
 #        SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
