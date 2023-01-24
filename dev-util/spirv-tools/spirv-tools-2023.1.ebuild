@@ -9,15 +9,11 @@ PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="xml(+)"
 inherit cmake-multilib python-any-r1
 
-#if [[ ${PV} == *9999* ]]; then
-EGIT_REPO_URI="https://github.com/KhronosGroup/${MY_PN}.git"
-inherit git-r3
-#else
-#        EGIT_COMMIT="v${PV}"
-#        SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
-#        KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv ~x86"
-#        S="${WORKDIR}"/${MY_PN}-${PV}
-#fi
+EGIT_COMMIT="v${PV}"
+SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
+KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv ~x86"
+S="${WORKDIR}"/${MY_PN}-${PV}
+
 
 DESCRIPTION="Provides an API and commands for processing SPIR-V modules"
 HOMEPAGE="https://github.com/KhronosGroup/SPIRV-Tools"
