@@ -1,7 +1,7 @@
 diff --git a/make_linux.mak b/make_linux.mak
 index 65c168f..92086c7 100644
 --- a/make_linux.mak
-+++ b/make_linux.mak.n
++++ b/make_linux.mak
 @@ -98,15 +98,15 @@ ATK_OBJECTS = swt.o atk.o atk_structs.o atk_custom.o atk_stats.o
  WEBKIT_OBJECTS = swt.o webkitgtk.o webkitgtk_structs.o webkitgtk_stats.o webkitgtk_custom.o
  GLX_OBJECTS = swt.o glx.o glx_structs.o glx_stats.o
