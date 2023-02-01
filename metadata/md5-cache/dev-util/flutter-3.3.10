@@ -1,0 +1,13 @@
+BDEPEND=acct-group/flutter
+DEFINED_PHASES=install postinst
+DEPEND=app-shells/bash net-misc/curl dev-vcs/git sys-apps/coreutils app-arch/unzip app-arch/xz-utils app-arch/zip X? ( virtual/glu ) wayland? ( virtual/glu ) android? ( dev-util/android-sdk-cmdline-tools )
+DESCRIPTION=Google's SDK for crafting beautiful, fast user experiences for mobile, web, and desktop from a single codebase
+EAPI=8
+HOMEPAGE=https://flutter.dev
+IUSE=X wayland +android
+KEYWORDS=amd64
+LICENSE=BSD-3
+RDEPEND=app-shells/bash net-misc/curl dev-vcs/git sys-apps/coreutils app-arch/unzip app-arch/xz-utils app-arch/zip X? ( virtual/glu ) wayland? ( virtual/glu ) android? ( dev-util/android-sdk-cmdline-tools )
+SLOT=0
+SRC_URI=https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.3.10-stable.tar.xz
+_md5_=790c76c90bd1a7f6db686753dee79b0d
