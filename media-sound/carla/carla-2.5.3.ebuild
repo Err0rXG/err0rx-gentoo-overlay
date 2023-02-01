@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{8,9,10} )
 inherit python-single-r1 toolchain-funcs xdg-utils
 
 DESCRIPTION="Full featured audio plugin host supporting many audio drivers and plugin formats"
-HOMEPAGE="https://kx.studio/Applications:Carla https://github.com/falkTX/Carla"
+HOMEPAGE="https://kx.studio/Applications:Carla https://github.com/falkTX/Carla  https://github.com/falkTX/Carla"
 
 SRC_URI="https://github.com/falkTX/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64"
