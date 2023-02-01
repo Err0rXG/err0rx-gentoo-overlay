@@ -27,12 +27,12 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${PN//android-sdk-/}"
 
 src_install() {
-    insinto /opt/android-sdk-cmdline-tools/
+    insinto /opt/android-sdk/cmdline-tools/
     doins -r bin
     doins -r lib
 
     # bins
-    chmod +x ${D}/opt/android-sdk-cmdline-tools/*
+    chmod +x ${D}/opt/android-sdk/cmdline-tools/*
 
     # docs
     dodoc source.properties NOTICE.txt
