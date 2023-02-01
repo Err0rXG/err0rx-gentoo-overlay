@@ -10,7 +10,7 @@ diff -Naur a/make_linux.mak b/make_linux.mak
  		-DSWT_VERSION=$(SWT_VERSION) \
  		$(NATIVE_STATS) \
  		$(SWT_DEBUG) \
-@@ -129,13 +129,13 @@
+@@ -130,13 +130,13 @@
  make_swt: $(SWT_LIB) $(SWTPI_LIB)
  
  $(SWT_LIB): $(SWT_OBJECTS)
