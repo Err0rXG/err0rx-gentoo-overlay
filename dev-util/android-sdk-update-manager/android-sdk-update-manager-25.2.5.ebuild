@@ -1,77 +1,57 @@
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=7
 
-inherit eutils user udev
+inherit desktop udev
 
-MY_P="tools_r${PV}-linux"
+ANDROID_SDK_DIR="/opt/android-sdk-update-manager"
+MY_P="android-sdk_r${PV}-linux"
 
 DESCRIPTION="Open Handset Alliance's Android SDK"
-HOMEPAGE="http://developer.android.com"
-SRC_URI="https://dl.google.com/android/repository/${MY_P}.zip"
-IUSE=""
+HOMEPAGE="https://developer.android.com"
+SRC_URI="https://dl.google.com/android/${MY_P}.tgz"
+S="${WORKDIR}/android-sdk-linux"
 
 LICENSE="android"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
 
-DEPEND="app-arch/tar
-		app-arch/gzip"
-RDEPEND=">=virtual/jdk-1.5
-	>=dev-java/ant-core-1.6.5
+DEPEND="acct-group/android"
+RDEPEND="
+	${DEPEND}
+	dev-java/ant-core
 	>=dev-java/swt:3.7[cairo]
+	>=virtual/jdk-1.8
+	sys-libs/ncurses-compat:5[abi_x86_32(-)]
 	sys-libs/zlib[abi_x86_32(-)]
-	media-libs/fontconfig
-	media-libs/freetype
-	media-libs/mesa
-	sys-libs/ncurses:5/5
-	x11-libs/libX11
-	x11-libs/libXdamage
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXrender"
-
-ANDROID_SDK_DIR="/opt/${PN}"
-QA_FLAGS_IGNORED_x86="
-	${ANDROID_SDK_DIR/\/}/tools/adb
-	${ANDROID_SDK_DIR/\/}/tools/mksdcard
-	${ANDROID_SDK_DIR/\/}/tools/sqlite3
-	${ANDROID_SDK_DIR/\/}/tools/hprof-conv
-	${ANDROID_SDK_DIR/\/}/tools/zipalign
-	${ANDROID_SDK_DIR/\/}/tools/dmtracedump
 "
-QA_FLAGS_IGNORED_amd64="${QA_FLAGS_IGNORED_x86}"
 
-QA_PREBUILT="${ANDROID_SDK_DIR/\/}/tools/*"
+QA_PREBUILT="*"
 
-S="${WORKDIR}/tools"
-
-pkg_setup() {
-	enewgroup android
+src_prepare() {
+	default
+	rm -rf tools/lib/x86* || die
 }
 
-src_prepare(){
-	rm -rf $S/lib/x86*
-	rm -rf $S/lib/emul*
-	rm -rf $S/emul*
-}
-
-src_install(){
-	dodoc $S/NOTICE.txt
+src_install() {
+	dodoc tools/NOTICE.txt "SDK Readme.txt"
+	rm -f tools/NOTICE.txt "SDK Readme.txt" || die
 
 	dodir "${ANDROID_SDK_DIR}/tools"
-	cp -pPR $S/* "${ED}${ANDROID_SDK_DIR}/tools" || die "failed to install tools"
-
-	rm -rf "${ED}${ANDROID_SDK_DIR}/tools/lib64"
+	cp -pPR tools/* "${ED}${ANDROID_SDK_DIR}/tools" || die
 
 	# Maybe this is needed for the tools directory too.
 	dodir "${ANDROID_SDK_DIR}"/{add-ons,build-tools,docs,extras,platforms,platform-tools,samples,sources,system-images,temp}
+
 	fowners -R root:android "${ANDROID_SDK_DIR}"/{.,add-ons,build-tools,docs,extras,platforms,platform-tools,samples,sources,system-images,temp,tools}
 	fperms -R 0775 "${ANDROID_SDK_DIR}"/{.,add-ons,build-tools,docs,extras,platforms,platform-tools,samples,sources,system-images,temp,tools}
+
 	echo "PATH=\"${EPREFIX}${ANDROID_SDK_DIR}/tools:${EPREFIX}${ANDROID_SDK_DIR}/platform-tools\"" > "${T}/80${PN}" || die
 
 	SWT_PATH=
-	SWT_VERSIONS="4.26"
+	SWT_VERSIONS="3.7 3.6 4.10 4.26"
 	for version in $SWT_VERSIONS; do
 		# redirecting stderr to /dev/null
 		# not sure if this is best, but avoids misleading error messages
@@ -96,11 +76,11 @@ src_install(){
 }
 
 pkg_postinst() {
-	elog "The Android SDK now uses its own manager for the development	environment."
+	elog "The Android SDK now uses its own manager for the development      environment."
 	elog "Run 'android' to download the full SDK, including some of the platform tools."
 	elog "You must be in the android group to manage the development environment."
 	elog "Just run 'gpasswd -a <USER> android', then have <USER> re-login."
-	elog "See http://developer.android.com/sdk/adding-components.html for more"
+	elog "See https://developer.android.com/sdk/adding-components.html for more"
 	elog "information."
 	elog "If you have problems downloading the SDK, see https://code.google.com/p/android/issues/detail?id=4406"
 	elog "You need to run env-update and source /etc/profile in any open shells"
