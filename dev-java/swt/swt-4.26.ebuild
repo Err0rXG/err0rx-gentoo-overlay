@@ -74,7 +74,7 @@ src_prepare() {
 	default
 
 	# Define missing g_thread_supported() to be already started.
-	sed -i '1s/^/#define g_thread_supported() 1\n\n/' "${S}"/os_custom.h || die
+	sed -i '1s/^/GThread *thread = g_thread_new("thread-name", thread_func, data);\n\n/' "${S}"/os_custom.h || die
 
 	# Webext is also in the library directory
 	sed -i 's|findResource([^,]\+|findResource("swt"|' \
