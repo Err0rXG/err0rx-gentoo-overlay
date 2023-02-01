@@ -1,2 +1,2 @@
-PATH=/opt/android-sdk-cmdline-tools/bin
-USER_PATH=/opt/android-sdk-cmdline-tools/bin
+PATH=/opt/android-sdk/cmdline-tools/bin
+USER_PATH=/opt/android-sdk/mdline-tools/bin
