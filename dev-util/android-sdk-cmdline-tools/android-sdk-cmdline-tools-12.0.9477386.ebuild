@@ -13,7 +13,6 @@ KEYWORDS="~amd64"
 SLOT="0"
 LICENSE="Apache-2.0"
 
-BDEPEND="dev-util/android-sdk-update-manager"
 RDEPEND="
     app-shells/bash
     net-misc/curl
@@ -23,20 +22,21 @@ RDEPEND="
     app-arch/xz-utils
     app-arch/zip
 "
+BDEPEND="${RDEPEND}"
 DEPEND="${RDEPEND}"
 S="${WORKDIR}/${PN//android-sdk-/}"
 
 src_install() {
-    insinto /opt/android-sdk-update-manager/cmdline-tools/latest/
+    insinto /opt/android-sdk-cmdline-tools/
     doins -r bin
     doins -r lib
 
     # bins
-    chmod +x ${D}/opt/android-sdk-update-manager/cmdline-tools/latest/bin/*
+    chmod +x ${D}/opt/android-sdk-cmdline-tools/*
 
     # docs
     dodoc source.properties NOTICE.txt
 
     # environment
-    #doenvd ${FILESDIR}/99${PN}
+    doenvd ${FILESDIR}/99${PN}
 }
