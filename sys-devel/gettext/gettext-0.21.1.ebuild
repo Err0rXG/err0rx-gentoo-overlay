@@ -37,7 +37,7 @@ DEPEND=">=virtual/libiconv-0-r1[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.3:=
 	dev-libs/expat
 	acl? ( virtual/acl )
-	ncurses? ( sys-libs/ncurses )
+	ncurses? ( sys-libs/ncurses:0= )
 	java? ( virtual/jdk )"
 RDEPEND="${DEPEND}
 	!git? ( cvs? ( dev-vcs/cvs ) )
