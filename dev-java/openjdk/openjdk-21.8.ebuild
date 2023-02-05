@@ -40,12 +40,7 @@ HOMEPAGE="https://openjdk.org"
 SRC_URI="
 	https://github.com/${PN}/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
 		-> ${P}.tar.gz
-	!system-bootstrap? (
-		$(bootstrap_uri arm64 ${ARM64_XPAK} elibc_musl)
-		$(bootstrap_uri ppc64 ${PPC64_XPAK} big-endian)
-		$(bootstrap_uri x86 ${X86_XPAK})
-		$(bootstrap_uri riscv ${RISCV_XPAK})
-	)
+		
 	riscv? ( https://dev.gentoo.org/~gyakovlev/distfiles/dev-java/openjdk/java17-riscv64.patch )
 "
 # riscv patch origin:
