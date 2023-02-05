@@ -209,10 +209,10 @@ src_configure() {
 		--with-vendor-url="https://gentoo.org"
 		--with-vendor-bug-url="https://bugs.gentoo.org"
 		--with-vendor-vm-bug-url="https://bugs.openjdk.java.net"
-		--with-vendor-version-string="${SLOT}_r8"
+		--with-vendor-version-string="${SLOT}"
 		--with-version-pre=""
-		--with-version-string="${SLOT}_r8"
-		--with-version-build="${SLOT}_r8"
+		--with-version-string="${SLOT}"
+		--with-version-build="${SLOT}"
 		--with-zlib="${XPAK_BOOTSTRAP:-system}"
 		--enable-dtrace=$(usex systemtap yes no)
 		--enable-headless-only=$(usex headless-awt yes no)
