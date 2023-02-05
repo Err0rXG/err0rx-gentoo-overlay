@@ -211,7 +211,7 @@ src_configure() {
 		--with-vendor-vm-bug-url="https://bugs.openjdk.java.net"
 		--with-vendor-version-string="${MY_PV}"
 		--with-version-pre=""
-		--with-version-string="${MY_PV*}"
+		--with-version-string="${MY_PV}"
 		--with-version-build="${MY_PV}"
 		--with-zlib="${XPAK_BOOTSTRAP:-system}"
 		--enable-dtrace=$(usex systemtap yes no)
