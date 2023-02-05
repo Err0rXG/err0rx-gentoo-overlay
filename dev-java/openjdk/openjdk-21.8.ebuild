@@ -41,7 +41,6 @@ SRC_URI="
 	https://github.com/${PN}/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
 		-> ${P}.tar.gz
 		
-	riscv? ( https://dev.gentoo.org/~gyakovlev/distfiles/dev-java/openjdk/java17-riscv64.patch )
 "
 # riscv patch origin:
 # https://raw.githubusercontent.com/felixonmars/archriscv-packages/master/java17-openjdk/java17-riscv64.patch
