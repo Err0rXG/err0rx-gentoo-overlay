@@ -6,25 +6,25 @@ EAPI=7
 inherit check-reqs eapi8-dosym flag-o-matic java-pkg-2 java-vm-2 multiprocessing toolchain-funcs
 
 # variable name format: <UPPERCASE_KEYWORD>_XPAK
-ARM64_XPAK="17.0.2_p8" # musl bootstrap install
-PPC64_XPAK="17.0.1_p12" # big-endian bootstrap tarball
-RISCV_XPAK="17.0.3_p7"
-X86_XPAK="17.0.1_p12"
+#ARM64_XPAK="17.0.2_p8" # musl bootstrap install
+#PPC64_XPAK="17.0.1_p12" # big-endian bootstrap tarball
+#RISCV_XPAK="17.0.3_p7"
+#X86_XPAK="17.0.1_p12"
 
 # Usage: bootstrap_uri <keyword> <version> [extracond]
 # Example: $(bootstrap_uri ppc64 17.0.1_p12 big-endian)
 # Output: ppc64? ( big-endian? ( https://...17.0.1_p12-ppc64.tar.xz ) )
-bootstrap_uri() {
-	local baseuri="https://dev.gentoo.org/~arthurzam/distfiles/dev-java/${PN}/${PN}-bootstrap"
-	local suff="tar.xz"
-	local kw="${1:?${FUNCNAME[0]}: keyword not specified}"
-	local ver="${2:?${FUNCNAME[0]}: version not specified}"
-	local cond="${3-}"
-	[[ ${cond} == elibc_musl* ]] && local musl=yes
-
-	# here be dragons
-	echo "${kw}? ( ${cond:+${cond}? (} ${baseuri}-${ver}-${kw}${musl:+-musl}.${suff} ${cond:+) })"
-}
+#bootstrap_uri() {
+#	local baseuri="https://dev.gentoo.org/~arthurzam/distfiles/dev-java/${PN}/${PN}-bootstrap"
+#	local suff="tar.xz"
+#	local kw="${1:?${FUNCNAME[0]}: keyword not specified}"
+#	local ver="${2:?${FUNCNAME[0]}: version not specified}"
+#	local cond="${3-}"
+#	[[ ${cond} == elibc_musl* ]] && local musl=yes
+#
+#	# here be dragons
+#	echo "${kw}? ( ${cond:+${cond}? (} ${baseuri}-${ver}-${kw}${musl:+-musl}.${suff} ${cond:+) })"
+#}
 
 # don't change versioning scheme
 # to find correct _p number, look at
