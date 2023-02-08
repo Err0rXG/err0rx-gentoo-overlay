@@ -52,7 +52,6 @@ REQUIRED_USE="
         javafx? ( alsa !headless-awt )
         !system-bootstrap? ( jbootstrap )
 
-	#cds
 	cds? ( !minimal !core )
 	generate-classlist? ( cds )
 	cds-archive? ( cds )
@@ -68,7 +67,7 @@ COMMON_DEPEND="
 	sys-libs/zlib
 	media-libs/libjpeg-turbo:0=
 	systemtap? ( dev-util/systemtap )
-	clang? (>=sys-deve/clang-14.0.6-r1)
+	clang? ( >=sys-deve/clang-14.0.6-r1 )
 "
 
 # Many libs are required to build, but not to run, make is possible to remove
