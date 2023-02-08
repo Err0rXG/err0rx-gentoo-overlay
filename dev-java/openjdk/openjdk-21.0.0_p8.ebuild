@@ -35,7 +35,7 @@ KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
 
 IUSE="alsa cups examples headless-awt javafx -jtreg selinux source"
 # Java Docs
-IUSE+=" man doc"
+IUSE="man doc"
 # Variants
 IUSE+=" +server client minimal core zero"
 # Compilation With Optimization
