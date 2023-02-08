@@ -12,7 +12,7 @@ PPC64_BOOT="jdk20-ppc64"
 RISCV_BOOT="jdk20-riscv"
 
 #JAVA
-JAVA_VARIANTS="+server client minimal core zero"
+JAVA_VARIANTS=(+server client minimal core zero)
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
