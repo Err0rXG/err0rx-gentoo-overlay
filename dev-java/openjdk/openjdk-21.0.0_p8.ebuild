@@ -33,7 +33,7 @@ SRC_URI="
 LICENSE="GPL-2-with-classpath-exception"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
 
-IUSE="alsa cups examples headless-awt javafx -jtreg selinux source"
+IUSE="alsa cups examples headless-awt javafx jtreg selinux source"
 # Java Docs
 IUSE+=" man doc"
 # Variants
@@ -47,7 +47,7 @@ IUSE+=" +epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
 # Java Sanitizer
 IUSE+=" asan ubsan"
 # Java Misc
-IUSE+=" openjdk-only linktime-gc native-coverage -branch-protection hsdis-bundling libffi-bundling generate-classlist cds-archive compatible-cds-alignment"
+IUSE+=" openjdk-only linktime-gc native-coverage branch-protection hsdis-bundling libffi-bundling generate-classlist cds-archive compatible-cds-alignment"
 
 REQUIRED_USE="
         javafx? ( alsa !headless-awt )
