@@ -13,6 +13,7 @@ RISCV_BOOT="jdk20-riscv"
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
+MY_PAT="${PV##*_p}"
 SLOT="${PV%%.*}"
 
 DESCRIPTION="Open source implementation of the Java programming language"
@@ -21,8 +22,8 @@ SRC_URI="
 	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
 		-> ${P}.tar.gz
 	!system-bootstrap? (
-		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/8/GPL/openjdk-${SLOT}-ea+8_linux-x64_bin.tar.gz -> jdk$SLOT}-amd64.tar.gz )
-		x86? ( https://download.java.net/java/early_access/jdk21/8/GPL/openjdk-21-ea+8_linux-x64_bin.tar.gz -> jdk${SLOT}-x86.tar.gz )
+		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk$SLOT}-amd64.tar.gz )
+		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-x86.tar.gz )
 		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-arm64.tar.gz )
 		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-ppc64.tar.gz )
 		riscv? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_riscv64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-riscv.tar.gz )
@@ -105,6 +106,10 @@ DEPEND="
 	javafx? ( dev-java/openjfx:${SLOT}= )
 	jtreg? ( >=dev-java/jtreg-6.1.0_p2 )
 	ccache? ( dev-util/ccache )
+	doc? (
+		app-text/pandoc
+		media-gfx/graphviz
+	)
 	system-bootstrap? (
 		|| (
 			dev-java/openjdk-bin:${SLOT}
@@ -227,6 +232,7 @@ src_configure() {
 		--enable-generate-classlist=$(usex generate-classlist)
 		--enable-cds-archive=$(usex cds-archive yes no)
 		--enable-compatible-cds-alignment=$(usex compatible-cds-alignment yes no)
+		--enable-openjdk-only=$(usex openjdk-only yes no)
 
 		# Docs
 		--enable-full-docs=$(usex doc yes no)
@@ -268,6 +274,9 @@ src_configure() {
 		--enable-jvm-feature-epsilongc=$(usex epsilongc yes no)
 
 		# Default Flags
+		--disable-warning-as-errors
+		--with-boot-jdk="${JDK_HOME}"
+		--with-toolchain-type=(usex clang clang gcc)
 		--with-extra-cflags="${CFLAGS}"
 		--with-extra-cxxflags="${CXXFLAGS}"
 		--with-extra-ldflags="${LDFLAGS}"
