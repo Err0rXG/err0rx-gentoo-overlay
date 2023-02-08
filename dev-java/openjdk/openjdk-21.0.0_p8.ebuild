@@ -55,7 +55,7 @@ REQUIRED_USE="
 	cds? ( !minimal !core )
 	generate-classlist? ( cds )
 	cds-archive? ( cds )
-	enable-compatible-cds-alignment? ( cds )
+	compatible-cds-alignment? ( cds )
 "
 
 COMMON_DEPEND="
@@ -104,7 +104,7 @@ DEPEND="
 	x11-libs/libXtst
 	javafx? ( dev-java/openjfx:${SLOT}= )
 	jtreg? ( >=dev-java/jtreg-6.1.0_p2 )
-	cache? ( dev-util/ccache )
+	ccache? ( dev-util/ccache )
 	system-bootstrap? (
 		|| (
 			dev-java/openjdk-bin:${SLOT}
