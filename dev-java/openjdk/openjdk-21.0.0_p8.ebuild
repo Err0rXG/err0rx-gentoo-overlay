@@ -13,6 +13,8 @@ RISCV_BOOT="jdk20-riscv"
 
 #JAVA
 JAVA_VARIANTS="+server client minimal core zero"
+JAVA_GC="+epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
+JAVA_FEATURES="+cds +compiler1 +compiler2 +jfr +jni-check jvmci jvmti +javac-server static-build management vm-structs systemtap"
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
@@ -44,9 +46,9 @@ IUSE+=" ${JAVA_VARIANTS}"
 # Compilation With Optimization
 IUSE+=" clang lto opt-size services +jbootstrap precompiled-headers ccache system-bootstrap icecream debug"
 # Java Features
-IUSE+=" +cds +compiler1 +compiler2 +jfr +jni-check jvmci jvmti +javac-server static-build management vm-structs systemtap"
+IUSE+=" ${JAVA_FEATURES}"
 # Garbage Collectors
-IUSE+=" +epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
+IUSE+=" ${JAVA_GC}"
 # Java Sanitizer
 IUSE+=" asan ubsan"
 # Java Misc
@@ -301,7 +303,23 @@ src_configure() {
 	)
 
 	use riscv && myconf+=( --with-boot-jdk-jvmargs="-Djdk.lang.Process.launchMechanism=vfork" )
+	
+	# Placing Java Variants
+	JAVAM_VAR=""
+	for jvm in ${JVM_VARIANTS[@]}; do
+		if use $jvm; then
+			JAVA_VAR="${JAVA_VAR},$jvm"
+		fi
+	done
+	
+	if [ -n "$JAVA_VAR" ]; then
+		JAVA_VAR="--with-jvm-variants=${JAVA_VAR%,}"
+		myconf+=( ${$JAVA_VAR} )
+	else
+		die "Atleast One Variant Is Needed"
+	fi
 
+	#JavaFx
 	if use javafx; then
 		local zip="${EPREFIX}/usr/$(get_libdir)/openjfx-${SLOT}/javafx-exports.zip"
 		if [[ -r ${zip} ]]; then
