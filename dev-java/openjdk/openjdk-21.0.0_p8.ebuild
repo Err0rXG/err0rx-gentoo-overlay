@@ -12,7 +12,7 @@ PPC64_BOOT="jdk20-ppc64"
 RISCV_BOOT="jdk20-riscv"
 
 #JAVA
-JAVA_VARIANTS="+server client minimal core zero"
+JAVA_VARIANTS="client minimal core zero"
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
@@ -41,6 +41,7 @@ IUSE="alsa cups examples headless-awt javafx jtreg selinux source"
 IUSE+=" man doc"
 # Variants
 IUSE+=" ${JAVA_VARIANTS}"
+IUSE+=" server default"
 # Compilation With Optimization
 IUSE+=" clang lto opt-size services +jbootstrap precompiled-headers ccache system-bootstrap icecream debug"
 # Java Features
