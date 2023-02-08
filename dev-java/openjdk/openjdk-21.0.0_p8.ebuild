@@ -40,7 +40,7 @@ IUSE="alsa cups examples headless-awt javafx jtreg selinux source"
 # Java Docs
 IUSE+=" man doc"
 # Variants
-IUSE+="$(JAVA_VARIANTS)"
+IUSE+="${JAVA_VARIANTS}"
 # Compilation With Optimization
 IUSE+=" clang lto opt-size services +jbootstrap precompiled-headers ccache system-bootstrap icecream debug"
 # Java Features
