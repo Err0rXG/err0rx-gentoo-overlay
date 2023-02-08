@@ -276,7 +276,7 @@ src_configure() {
 		# Default Flags
 		--disable-warning-as-errors
 		--with-boot-jdk="${JDK_HOME}"
-		--with-toolchain-type=(usex clang clang gcc)
+		--with-toolchain-type=$(usex clang clang gcc)
 		--with-extra-cflags="${CFLAGS}"
 		--with-extra-cxxflags="${CXXFLAGS}"
 		--with-extra-ldflags="${LDFLAGS}"
