@@ -19,7 +19,7 @@ SLOT="${PV%%.*}"
 DESCRIPTION="Open source implementation of the Java programming language"
 HOMEPAGE="https://openjdk.org"
 SRC_URI="
-	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
+	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_EXT}.tar.gz
 		-> ${P}.tar.gz
 	!system-bootstrap? (
 		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk$SLOT}-amd64.tar.gz )
