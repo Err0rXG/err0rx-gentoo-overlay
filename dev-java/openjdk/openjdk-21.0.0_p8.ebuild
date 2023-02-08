@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit check-reqs eapi8-dosym flag-o-matic java-pkg-2 java-vm-2 multiprocessing toolchain-funcs
+inherit check-reqs flag-o-matic java-pkg-2 java-vm-2 multiprocessing toolchain-funcs
 
 # Variable Name Format: <UPPERCASE_KEYWORD>_BOOT
 X86_BOOT="jdk${SLOT}-x86"
