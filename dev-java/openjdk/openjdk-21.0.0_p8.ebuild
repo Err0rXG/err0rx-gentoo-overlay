@@ -37,7 +37,8 @@ IUSE="alsa cups examples headless-awt javafx jtreg selinux source"
 # Java Docs
 IUSE+=" man doc"
 # Variants
-IUSE+=" +server client minimal core zero"
+JAVA_VARIANTS="+server client minimal core zero"
+IUSE+="$(JAVA_VARIANTS)"
 # Compilation With Optimization
 IUSE+=" clang lto opt-size services +jbootstrap precompiled-headers ccache system-bootstrap icecream debug"
 # Java Features
