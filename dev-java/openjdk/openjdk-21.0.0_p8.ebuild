@@ -22,7 +22,7 @@ SRC_URI="
 	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_EXT}.tar.gz
 		-> ${P}.tar.gz
 	!system-bootstrap? (
-		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk$SLOT}-amd64.tar.gz )
+		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-amd64.tar.gz )
 		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-x86.tar.gz )
 		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-arm64.tar.gz )
 		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-ppc64.tar.gz )
