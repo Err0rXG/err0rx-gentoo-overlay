@@ -202,18 +202,6 @@ src_configure() {
 	# Strip some flags users may set, but should not. #818502
 	filter-flags -fexceptions
 
-	# Placing Java Variants
-	JVM_VARIANTS=""
-	JVM_VARIANTS_LIST=(server client minimal core zero)
-
-	for jvm in ${JVM_VARIANTS_LIST[@]}; do
-		if use $jvm; then
-			JVM_VARIANTS="${JVM_VARIANTS},$jvm"
-		fi
-	done
-
-	JVM_VARIANTS="${JVM_VARIANTS#,}"
-
 	# Flags To Build
 	local myconf=(
 		# Required
@@ -314,7 +302,7 @@ src_configure() {
 	
 	if [ -n "$JAVA_VAR" ]; then
 		JAVA_VAR="--with-jvm-variants=${JAVA_VAR%,}"
-		myconf+=( ${$JAVA_VAR} )
+		myconf+=( ${JAVA_VAR} )
 	else
 		die "Atleast One Variant Is Needed"
 	fi
