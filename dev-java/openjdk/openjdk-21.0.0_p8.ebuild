@@ -44,8 +44,9 @@ javaselc() {
 JAVA_VARIANTS="+server client minimal core zero"
 JAVA_GC="+epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
 JAVA_FEATURES="+cds +compiler1 +compiler2 +jfr +jni-check jvmci jvmti +javac-server static-build management vm-structs systemtap"
+JAVA_MISC="openjdk-only linktime-gc native-coverage branch-protection hsdis-bundling libffi-bundling generate-classlist cds-archive compatible-cds-alignment"
 
-JAVA_FLAGS="JAVA_VARIANTS JAVA_GC JAVA_FEATURES"
+JAVA_FLAGS="JAVA_VARIANTS JAVA_GC JAVA_FEATURES JAVA_MISC"
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
@@ -69,7 +70,7 @@ SRC_URI="
 LICENSE="GPL-2-with-classpath-exception"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
 
-IUSE="alsa cups examples headless-awt javafx jtreg selinux source"
+IUSE="alsa cups examples headless-awt javafx selinux source"
 # Java Docs
 IUSE+=" man doc"
 # Variants
@@ -140,7 +141,6 @@ DEPEND="
 	x11-libs/libXt
 	x11-libs/libXtst
 	javafx? ( dev-java/openjfx:${SLOT}= )
-	jtreg? ( >=dev-java/jtreg-6.1.0_p2 )
 	ccache? ( dev-util/ccache )
 	doc? (
 		app-text/pandoc
@@ -287,6 +287,9 @@ src_configure() {
 	)
 
 	use riscv && myconf+=( --with-boot-jdk-jvmargs="-Djdk.lang.Process.launchMechanism=vfork" )
+	
+	# Setting Java Flags
+	$(javaselc ${JAVA_FLAGS})
 	
 	#JavaFx
 	if use javafx; then
