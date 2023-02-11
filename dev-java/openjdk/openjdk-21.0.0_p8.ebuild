@@ -280,7 +280,7 @@ src_configure() {
 		--with-version-string="${PV%_p*}"
 		--with-version-build="${PV#*_p}"
 
-		--with-version-feature
+		--with-version-feature="${PV%%.*}"
 		--with-version-interim
 		--with-version-update
 		--with-version-patch
