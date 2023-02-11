@@ -34,7 +34,7 @@ javaselc() {
                   if [ "$flag_name" == "MISC" ]; then
                         myconf+=( "${values}" )
                   else
-                        myconf+=( "--with-jvm-${flag_name}=${values} " )
+                        myconf+=( --with-jvm-"${flag_name}"="${values}" )
                   fi
             fi
       done
