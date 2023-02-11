@@ -12,9 +12,40 @@ PPC64_BOOT="jdk20-ppc64"
 RISCV_BOOT="jdk20-riscv"
 
 #JAVA
+javaselc() {
+      local flags="$1"
+      for flag in $flags; do
+            flag_name=${flag##*_}
+            flag_values=${!flag}
+            values=""
+            for value in $flag_values; do
+                  if [[ ${value:0:1} == "+" ]]; then
+                        if [ "$flag_name" == "MISC" ]; then
+                              values+="--enable-${value:1}=yes\n"
+                        else
+                              values+=${value:1}","
+                        fi
+                  else
+                        values+="--enable-${value:1}=no\n"
+                  fi
+            done
+            if [ -n "$values" ]; then
+                  values=${values::-1}
+                  if [ "$flag_name" == "MISC" ]; then
+                        myconf+=( "${values}" )
+                  else
+                        myconf+=( "--with-jvm-${flag_name}=${values} " )
+                  fi
+            fi
+      done
+}
+
+
 JAVA_VARIANTS="+server client minimal core zero"
 JAVA_GC="+epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
 JAVA_FEATURES="+cds +compiler1 +compiler2 +jfr +jni-check jvmci jvmti +javac-server static-build management vm-structs systemtap"
+
+JAVA_FLAGS="JAVA_VARIANTS JAVA_GC JAVA_FEATURES"
 
 MY_PV="${PV%%.*}+${PV##*_p}"
 MY_EXT="${PV%%.*}-${PV##*_p}"
@@ -52,7 +83,7 @@ IUSE+=" ${JAVA_GC}"
 # Java Sanitizer
 IUSE+=" asan ubsan"
 # Java Misc
-IUSE+=" openjdk-only linktime-gc native-coverage branch-protection hsdis-bundling libffi-bundling generate-classlist cds-archive compatible-cds-alignment"
+IUSE+=" ${JAVA_MISC}"
 
 REQUIRED_USE="
         javafx? ( alsa !headless-awt )
@@ -216,23 +247,9 @@ src_configure() {
 		--enable-asan=$(usex asan yes no)
 		--enable-ubsan=$(usex ubsan yes no)
 
-		# Misc
-		--enable-linktime-gc=$(usex linktime-gc yes no)
-		--enable-hsdis-bundling=$(usex hsdis-bundling yes no)
-		--enable-libffi-bundling=$(usex libffi-bundling yes no)
-		--enable-branch-protection=$(usex branch-protection yes no)
-		--enable-jtreg-failure-handler=$(usex jtreg yes no)
-		--enable-generate-classlist=$(usex generate-classlist)
-		--enable-cds-archive=$(usex cds-archive yes no)
-		--enable-compatible-cds-alignment=$(usex compatible-cds-alignment yes no)
-		--enable-openjdk-only=$(usex openjdk-only yes no)
-
 		# Docs
 		--enable-full-docs=$(usex doc yes no)
 		--enable-manpages=$(usex man yes no)
-
-		# Variants
-		--with-jvm-variants=${JVM_VARIANTS}
 
 		# Compile and Optimize
 		--enable-jvm-feature-link-time-opt=$(usex lto yes no)
@@ -244,30 +261,9 @@ src_configure() {
 
 		# Features
 		--enable-static-build=$(usex static-build yes no)
-		--enable-jvm-feature-static-build=$(usex static-build yes no)
-
-		--enable-jvm-feature-cds=$(usex cds yes no)
-		--enable-jvm-feature-compiler1=$(usex compiler1 yes no)
-		--enable-jvm-feature-compiler2=$(usex compiler2 yes no)
-		--enable-jvm-feature-dtrace=$(usex systemtap yes no)
-		--enable-jvm-feature-jfr=$(usex jfr yes no)
-		--enable-jvm-feature-jni-check=$(usex jni-check yes no)
-		--enable-jvm-feature-jvmci=$(usex jvmci yes no)
-		--enable-jvm-feature-jvmti=$(usex jvmti yes no)
-		--enable-jvm-feature-management=$(usex management yes no)
-		--enable-jvm-feature-vm-structs=$(usex vm-structs yes no)
-		--enable-javac-server=$(usex javac-server yes no)
-
-		# Garbage Collectors
-		--enable-jvm-feature-parallelgc=$(usex parallelgc yes no)
-		--enable-jvm-feature-serialgc=$(usex serialgc yes no)
-		--enable-jvm-feature-shenandoahgc=$(usex shenandoahgc yes no)
-		--enable-jvm-feature-zgc=$(usex zgc yes no)
-		--enable-jvm-feature-g1gc=$(usex g1gc yes no)
-		--enable-jvm-feature-epsilongc=$(usex epsilongc yes no)
+		#--enable-jvm-feature-static-build=$(usex static-build yes no)
 
 		# Default Flags
-		--disable-warning-as-errors
 		--with-boot-jdk="${JDK_HOME}"
 		--with-toolchain-type=$(usex clang clang gcc)
 		--with-extra-cflags="${CFLAGS}"
@@ -292,21 +288,6 @@ src_configure() {
 
 	use riscv && myconf+=( --with-boot-jdk-jvmargs="-Djdk.lang.Process.launchMechanism=vfork" )
 	
-	# Placing Java Variants
-	JAVAM_VAR=""
-	for jvm in ${JVM_VARIANTS[@]}; do
-		if use $jvm; then
-			JAVA_VAR="${JAVA_VAR},$jvm"
-		fi
-	done
-	
-	if [ -n "$JAVA_VAR" ]; then
-		JAVA_VAR="--with-jvm-variants=${JAVA_VAR%,}"
-		myconf+=( ${JAVA_VAR} )
-	else
-		die "Atleast One Variant Is Needed"
-	fi
-
 	#JavaFx
 	if use javafx; then
 		local zip="${EPREFIX}/usr/$(get_libdir)/openjfx-${SLOT}/javafx-exports.zip"
