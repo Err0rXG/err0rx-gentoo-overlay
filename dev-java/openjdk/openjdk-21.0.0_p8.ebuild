@@ -6,6 +6,7 @@ EAPI=8
 inherit check-reqs flag-o-matic java-pkg-2 java-vm-2 multiprocessing toolchain-funcs
 
 # Variable Name Format: <UPPERCASE_KEYWORD>_BOOT
+AMD64_BOOT="jdk${SLOT}-amd64"
 X86_BOOT="jdk${SLOT}-x86"
 ARM64_BOOT="jdk20-arm64"
 PPC64_BOOT="jdk20-ppc64"
