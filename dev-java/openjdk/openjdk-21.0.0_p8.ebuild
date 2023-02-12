@@ -6,11 +6,11 @@ EAPI=8
 inherit check-reqs flag-o-matic java-pkg-2 java-vm-2 multiprocessing toolchain-funcs
 
 # Variable Name Format: <UPPERCASE_KEYWORD>_BOOT
-AMD64_BOOT="jdk${SLOT}-amd64"
-X86_BOOT="jdk${SLOT}-x86"
-ARM64_BOOT="jdk20-arm64"
-PPC64_BOOT="jdk20-ppc64"
-RISCV_BOOT="jdk20-riscv"
+AMD64_BOOT="jdk${SLOT}-amd64.tar.gz"
+X86_BOOT="jdk${SLOT}-x86.tar.gz"
+ARM64_BOOT="jdk20-arm64.tar.gz"
+PPC64_BOOT="jdk20-ppc64.tar.gz"
+RISCV_BOOT="jdk20-riscv.tar.gz"
 
 #JAVA
 javaselc() {
@@ -80,11 +80,11 @@ SRC_URI="
 	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
 		-> ${P}.tar.gz
 	!system-bootstrap? (
-		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-amd64.tar.gz )
-		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-x86.tar.gz )
-		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-arm64.tar.gz )
-		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-ppc64.tar.gz )
-		riscv? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_riscv64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk20-riscv.tar.gz )
+		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> ${ARCH^^}_BOOT )
+		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> ${ARCH^^}_BOOT )
+		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> ${ARCH^^}_BOOT )
+		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> ${ARCH^^}_BOOT )
+		riscv? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_riscv64_linux_hotspot_2023-02-08-12-00.tar.gz -> ${ARCH^^}_BOOT )
 	)
 "
 
@@ -226,7 +226,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack ${P}
+	unpack ${P}.tar.gz
 	if use !system-bootstrap ; then
 		unpack ${ARCH^^}_BOOT
 		mv jdk-${SLOT} ${ARCH^^}_BOOT
