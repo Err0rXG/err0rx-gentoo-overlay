@@ -81,11 +81,11 @@ SRC_URI="
 	https://github.com/openjdk/jdk/archive/refs/tags/jdk-${MY_PV}.tar.gz
 		-> ${P}.tar.gz
 	!system-bootstrap? (
-		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> ${JA} )
-		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> ${JA} )
-		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> ${JA} )
-		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> ${JA} )
-		riscv? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_riscv64_linux_hotspot_2023-02-08-12-00.tar.gz -> ${JA} )
+		amd64? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-amd64 )
+		x86? ( https://download.java.net/java/early_access/jdk${SLOT}/${MY_PAT}/GPL/openjdk-${SLOT}-ea+${MY_PAT}_linux-x64_bin.tar.gz -> jdk${SLOT}-x86 )
+		arm64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_aarch64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk${SLOT}-arm64 )
+		ppc64? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_ppc64le_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk${SLOT}-ppc64 )
+		riscv? ( https://github.com/adoptium/temurin20-binaries/releases/download/jdk20-2023-02-08-12-00-beta/OpenJDK20U-jdk_riscv64_linux_hotspot_2023-02-08-12-00.tar.gz -> jdk${SLOT}-riscv )
 	)
 "
 
@@ -224,15 +224,6 @@ pkg_setup() {
 			return
 		fi
 	done
-}
-
-src_unpack() {
-	unpack ${P}.tar.gz
-	if use !system-bootstrap ; then
-		unpack ${JA}
-		mv jdk-${SLOT} ${JA}
-		export JDK_HOME="${WORKDIR}/${!bootvar}"
-	fi
 }
 
 src_prepare() {
