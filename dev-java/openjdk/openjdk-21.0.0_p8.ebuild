@@ -283,7 +283,7 @@ src_configure() {
 		--with-version-feature="${PV%%.*}"
 		--with-version-interim=0
 		--with-version-update=1
-		--with-version-patch="${PV##*_p} "
+		--with-version-patch="${PV##*_p}"
 	)
 
 	use riscv && myconf+=( --with-boot-jdk-jvmargs="-Djdk.lang.Process.launchMechanism=vfork" )
