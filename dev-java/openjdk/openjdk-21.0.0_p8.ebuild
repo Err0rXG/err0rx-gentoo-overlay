@@ -238,7 +238,7 @@ src_configure() {
 		# Required
 		--enable-keep-packaged-modules
 		--enable-unlimited-crypto
-		--enable-warings-as-errors=no
+		--enable-warnigs-as-errors=no
 
 		--enable-native-coverage=$(usex native-coverage yes no)
 		--enable-headless-only=$(usex headless-awt yes no)
