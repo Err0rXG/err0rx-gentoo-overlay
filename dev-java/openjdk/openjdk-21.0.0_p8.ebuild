@@ -237,9 +237,9 @@ src_configure() {
 	elif use !system-bootstrap ; then
 		local bootvar="${ARCH^^}_BOOT"
 		if use amd64 || use x86 ; then
-			mv jdk-${SLOT} ${ARCH^^}_BOOT
+			doreplace "jdk-${SLOT}" "${WORKDIR}/${ARCH^^}_BOOT"
 		else
-			mv "jdk-20+34" ${ARCH^^}_BOOT
+			doreplace "jdk-20+34" "${WORKDIR}/${ARCH^^}_BOOT"
 		fi
 		
 		export JDK_HOME="${WORKDIR}/${!bootvar}"
