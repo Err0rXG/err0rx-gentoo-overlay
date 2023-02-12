@@ -310,6 +310,8 @@ src_configure() {
 	
 	# Setting Java Flags
 	$(javaselc ${JAVA_FLAGS})
+	$(set_openjdk_target)
+	
 	
 	#JavaFx
 	if use javafx; then
