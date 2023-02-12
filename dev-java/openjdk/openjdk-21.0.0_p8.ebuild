@@ -225,6 +225,13 @@ pkg_setup() {
 	done
 }
 
+src_unpack() {
+	unpack ${P}
+	if use !system-bootstrap ; then
+		unpack ${ARCH^^}_BOOT
+		mv jdk-${SLOT} ${ARCH^^}_BOOT
+}
+
 src_prepare() {
 	use riscv && eapply "${DISTDIR}"/java17-riscv64.patch
 	default
