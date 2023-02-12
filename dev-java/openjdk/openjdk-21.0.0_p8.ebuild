@@ -40,6 +40,26 @@ javaselc() {
       done
 }
 
+set_openjdk_target() {
+	local target=(
+		["~amd64"]="x86_64-linux-gnu"
+		["~arm"]="arm-linux-gnueabihf"
+		["~arm64"]="aarch64-linux-gnu"
+		["~ppc64"]="powerpc64-linux-gnu"
+		["~riscv"]="riscv64-linux-gnu"
+	)
+	
+	for i in "${!target[@]}"; do
+		if [[ "${KEYWORDS}" == *"$i"* ]]; then
+			OPENJDK_TARGET="--openjdk-target=${target[$i]}"
+			myconf+=( "$OPENJDK_TARGET" )
+		else
+			die "Failed to set OPENJDK_TARGET\nUnsupported architecture: ${KEYWORDS}"
+		fi
+		
+	done
+}
+
 
 JAVA_VARIANTS="+server client minimal core zero"
 JAVA_GC="+epsilongc +g1gc +parallelgc +serialgc +shenandoahgc +zgc"
