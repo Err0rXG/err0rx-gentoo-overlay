@@ -53,7 +53,7 @@ set_openjdk_target() {
 	for i in "${!target[@]}"; do
 		if [[ "${KEYWORDS}" == *"$i"* ]]; then
 			OPENJDK_TARGET="--openjdk-target=${target[$i]}"
-			myconf+=( "$OPENJDK_TARGET" )
+			myconf+=( "${OPENJDK_TARGET}" )
 		else
 			die "Failed to set OPENJDK_TARGET\nUnsupported architecture: ${KEYWORDS}"
 		fi
@@ -230,6 +230,8 @@ src_unpack() {
 	if use !system-bootstrap ; then
 		unpack ${ARCH^^}_BOOT
 		mv jdk-${SLOT} ${ARCH^^}_BOOT
+		export JDK_HOME="${WORKDIR}/${!bootvar}"
+	fi
 }
 
 src_prepare() {
