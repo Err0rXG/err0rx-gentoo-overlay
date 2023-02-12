@@ -243,6 +243,8 @@ src_configure() {
 		fi
 		
 		export JDK_HOME="${WORKDIR}/${!bootvar}"
+		export JDK_HOME="${WORKDIR}/jdk-21"
+		export JDK_HOME="${WORKDIR}/jdk-20+34"
 	else
 		JDK_HOME=$(best_version -b dev-java/openjdk-bin:${SLOT})
 		[[ -n ${JDK_HOME} ]] || die "Build VM not found!"
