@@ -148,7 +148,7 @@ BDEPEND="
 	')
 	$(unpacker_src_uri_depends)
 	$(llvm_gen_dep '
-		sys-devel/clang:${LLVM_SLOT}
+		sys-devel/clang-20
 	')
 	virtual/pkgconfig
 	virtual/rust
