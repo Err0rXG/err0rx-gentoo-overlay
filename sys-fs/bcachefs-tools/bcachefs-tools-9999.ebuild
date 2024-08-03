@@ -106,15 +106,11 @@ inherit cargo flag-o-matic llvm-r1 python-any-r1 shell-completion toolchain-func
 
 DESCRIPTION="Tools for bcachefs"
 HOMEPAGE="https://bcachefs.org/"
-if [[ ${PV} == "9999" ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://evilpiepirate.org/git/bcachefs-tools.git"
-else
-	SRC_URI="https://github.com/koverstreet/bcachefs-tools/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
-		${CARGO_CRATE_URIS}"
-	S="${WORKDIR}/${P}"
-	KEYWORDS="~amd64 ~arm64"
-fi
+
+SRC_URI="https://github.com/koverstreet/bcachefs-tools/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+${CARGO_CRATE_URIS}"
+S="${WORKDIR}/${P}"
+KEYWORDS="~amd64 ~arm64"
 
 LICENSE="Apache-2.0 BSD GPL-2 MIT"
 SLOT="0"
